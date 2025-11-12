@@ -63,7 +63,7 @@ brca2_af$Gene <- "BRCA2"
 chek2_af$Gene <- "CHEK2"
 tp53_af$Gene  <- "TP53"
 
-# Combine all genes into one data frame
+#combine all genes into one data frame
 all_af <- rbind(brca2_af, chek2_af, tp53_af)
 
 #reshape for plots
@@ -163,7 +163,7 @@ ggplot(fst_results, aes(x = Pop1, y = Pop2, fill = FST)) +
   ) 
 
 ############ PCA
-
+#changing to long format
 to_long <- function(df, gene_name) {
   df %>%
     dplyr::rename(Global_AF = AF) %>%  #rename first
@@ -175,6 +175,7 @@ to_long <- function(df, gene_name) {
     ) %>%
     mutate(Gene = gene_name) #gene labels
 }
+
 
 al <- bind_rows( #add afs
   to_long(brca2_af, "BRCA2"),
@@ -211,6 +212,7 @@ summary(pca)
 pca <- prcomp(X, scale. = TRUE)
 pdat <- data.frame(pca$x[,1:2], Population = pop_labels)
 
+#plots
 ggplot(pdat, aes(PC1, PC2, color = Population, label = Population)) +
   geom_point(size = 3) +
   geom_text_repel(show.legend = FALSE) +
