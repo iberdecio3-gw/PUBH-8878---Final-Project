@@ -153,8 +153,8 @@ print(fst_results)
 #heat map
 ggplot(fst_results, aes(x = Pop1, y = Pop2, fill = FST)) +
   geom_tile(color = "white") +  # draw squares for each pair
-  scale_fill_gradient(low = "pink", high = "darkred") +  # color by FST magnitude
-  facet_wrap(~ Gene, ncol = 1) +  # one panel per gene
+  scale_fill_gradient(low = "pink", high = "darkred") +  #color by FST
+  facet_wrap(~ Gene, ncol = 1) +  #one panel p gene
   labs(
     title = "Pairwise FST Heatmap Across Populations",
     x = "Population",
@@ -194,7 +194,7 @@ af_mat <- al %>%
   tidyr::pivot_wider(
     names_from = Var,
     values_from = AF,
-    values_fill = list(AF = 0)  # explicit type-safe fill
+    values_fill = list(AF = 0) 
   )
 
 #matrix
